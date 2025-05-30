@@ -6,3 +6,5 @@ const CompanionsLibrary = () => {
     )
 }
 
+export default CompanionsLibrary
+
