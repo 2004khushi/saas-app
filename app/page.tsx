@@ -1,14 +1,48 @@
 import React from 'react'
-import {Button} from "@/components/ui/button";
+import CompanionCard from "@/components/CompanionCard";
+import CTA from "@/components/CTA";
+import CompanionsList from "@/components/CompanionsList";
 
 const Page = () => {
   return (
-    <div>
+    <main>
       <h1 className="text-2xl underline ">
-        Welcome to the App!
+        Popular Companions.
       </h1>
-        <Button> Click me!</Button>
-    </div>
+
+      <section className="home-section">
+          <CompanionCard
+              id="123"
+              name="Neura The Brainy Explorer"
+              topic="Neural Network of the Brain"
+              subject="Science"
+              duration={45}
+              color="#ffda6e"
+          />
+          <CompanionCard
+              id="234"
+              name="Countsy the number Wizard"
+              topic="Derivatives and Integrals"
+              subject="Maths"
+              duration={50}
+              color="#e5d0ff"
+          />
+          <CompanionCard
+              id="345"
+              name="Verba the Vocab Builder"
+              topic="language"
+              subject="English Literature"
+              duration={35 }
+              color="#BDE7FF"
+          />
+      </section>
+
+      <section className="home-section">
+          <CTA />
+          <CompanionsList />
+      </section>
+
+    </main>
   )
 }
 
