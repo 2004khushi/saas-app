@@ -1,4 +1,5 @@
 "use client";
+
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useEffect, useState} from "react";
 import Image from "next/image";
@@ -10,15 +11,15 @@ const SearchInput = () => {
     const searchParams = useSearchParams();
     const query = searchParams.get('topic') || '';
 
-    const [search, setSearch] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            if (search) {
+            if (searchQuery) {
                 const newUrl = formUrlQuery({
                     params: searchParams.toString(),
                     key: "topic",
-                    value: search,
+                    value: searchQuery,
                 });
 
                 router.push(newUrl, { scroll: false });
@@ -34,7 +35,7 @@ const SearchInput = () => {
             }
         },500)
 
-    }, [search,router,pathname,searchParams]);
+    }, [searchQuery,router,pathname,searchParams]);
 
 
 
@@ -46,8 +47,8 @@ const SearchInput = () => {
             <input
             placeholder="Search Companions..."
             className="outline-none"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}/>
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}/>
         </div>
     )
 }
