@@ -82,8 +82,8 @@ export const getUserSessions = async (userId: string, limit = 10) => {
     const supabase = createSupabaseClient();
     const { data, error } = await supabase
         .from('session_history')
-        .select(`companions:companion_id (*)`)
-        .eq('user_id', userId)
+        .select(`companions:companion_Id (*)`)
+        .eq('user_Id', userId)
         .order('created_at', { ascending: false })
         .limit(limit)
 
@@ -95,7 +95,7 @@ export const getUserSessions = async (userId: string, limit = 10) => {
 export const getUserCompanions = async (userId: string) => {
     const supabase = createSupabaseClient();
     const { data, error } = await supabase
-        .from('companions')
+        .from('Companions')
         .select()
         .eq('author', userId)
 
@@ -119,7 +119,7 @@ export const newCompanionPermissions = async () => {
     }
 
     const { data, error } = await supabase
-        .from('companions')
+        .from('Companions')
         .select('id', { count: 'exact' })
         .eq('author', userId)
 
@@ -140,8 +140,8 @@ export const addBookmark = async (companionId: string, path: string) => {
     if (!userId) return;
     const supabase = createSupabaseClient();
     const { data, error } = await supabase.from("bookmarks").insert({
-        companion_id: companionId,
-        user_id: userId,
+        companion_Id: companionId,
+        user_Id: userId,
     });
     if (error) {
         throw new Error(error.message);
@@ -159,8 +159,8 @@ export const removeBookmark = async (companionId: string, path: string) => {
     const { data, error } = await supabase
         .from("bookmarks")
         .delete()
-        .eq("companion_id", companionId)
-        .eq("user_id", userId);
+        .eq("companion_Id", companionId)
+        .eq("user_Id", userId);
     if (error) {
         throw new Error(error.message);
     }
@@ -173,8 +173,8 @@ export const getBookmarkedCompanions = async (userId: string) => {
     const supabase = createSupabaseClient();
     const { data, error } = await supabase
         .from("bookmarks")
-        .select(`companions:companion_id (*)`) // Notice the (*) to get all the companion data
-        .eq("user_id", userId);
+        .select(`companions:companion_Id (*)`) // Notice the (*) to get all the companion data
+        .eq("user_Id", userId);
     if (error) {
         throw new Error(error.message);
     }
